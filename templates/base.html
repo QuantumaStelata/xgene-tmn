@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="shortcut icon" href="{{clan.clan_emblem}}" type="image/ico">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap" rel="stylesheet">
+    <title>{{clan.tag}}</title>
+    <style>
+        :root {
+            --color: {{clan.color}};
+            --pass: {{clan.color}}2a;
+        } 
+    </style>
+</head>
+<body>
+    <div class='main'>
+        <div class='header'>
+            <div class='header-main'>
+                <h1 style="font-family: 'Bungee Shade', cursive;; font-size: 3.2em; width: 30vw;">{{clan.tag}}</h1>
+                <div class='bar'>
+                    <a href="{% url 'main' %}">Главная</a>
+                    <a href="{% url 'players' %}">Игроки</a>
+                    
+                    {% if user.is_authenticated %}
+                        {% if user.is_staff %}
+                            <a href="/admin" class="admin-button"></a>   
+                        {% endif %}
+                    {% endif %}    
+                </div>
+            </div>
+        </div>
+        {% block banner %}{% endblock %}
+        <div class="container">
+            {% block main %}{% endblock %}
+        </div>
+        <div class='footer'>
+            <table>
+                <tr>
+                    <td>RU1</td>
+                    <td>RU2</td>
+                    <td>RU3</td>
+                    <td>RU4</td>
+                    <td>RU5</td>
+                    <td>RU6</td>
+                    <td>RU7</td>
+                    <td>RU8</td>
+                    <td>RU9</td>
+                    <td>RU10</td>
+                    <td>RU11</td>
+                    <td>RU12</td>
+                    <td>RU13</td>
+                </tr>
+                <tr>
+                    <td>{{online.RU1}}</td>
+                    <td>{{online.RU2}}</td>
+                    <td>{{online.RU3}}</td>
+                    <td>{{online.RU4}}</td>
+                    <td>{{online.RU5}}</td>
+                    <td>{{online.RU6}}</td>
+                    <td>{{online.RU7}}</td>
+                    <td>{{online.RU8}}</td>
+                    <td>{{online.RU9}}</td>
+                    <td>{{online.RU10}}</td>
+                    <td>{{online.RU11}}</td>
+                    <td>{{online.RU12}}</td>
+                    <td>{{online.RU13}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>  
+</body>
+</html> 
