@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block banner %}
+    <div class='banner' style="background-image: url({% static 'img/article-banner.png' %});"></div>
+{% endblock %}
+
+{% block main %}
+    <div class="news">
+        <div class="article-text" style="word-wrap: break-word;">
+            <h1 style="color: #fff; margin: 20px 30px; text-align: center;">
+                {{article.name}}
+               
+            </h1>
+            <hr width="100%" style="margin: 30px 0 30px">
+            <div>
+                {% autoescape off %}{{article.text}}{% endautoescape %}
+            </div>
+        </div>
+        <div class="comments">
+            <form method="POST", action="">
+                {% csrf_token %}
+                <input name="nick" class='comment-name' placeholder="Nick" required maxlength="50">
+                <textarea name="text" class="comment-text" placeholder="Comment..." required maxlength="245"></textarea>
+                <input type="submit" class="submit" value="Поделиться">
+            </form>
+            {% for comment in comments %}
+                <div class="comment">
+                    <div class='user' style="background-image: url({% static 'img/user.png' %});"></div>
+                    <div>
+                        <h2>{{comment.nick}}:</h2>
+                        <p>{{comment.text}}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

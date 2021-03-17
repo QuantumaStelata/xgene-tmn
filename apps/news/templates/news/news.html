@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block banner %}
+    <div class='banner' style="background-image: url({% static 'img/news-banner.png' %});"></div>
+{% endblock %}
+
+{% block main %}
+    <div class="news">
+        <h1 style="color: #fff; margin-top: 40px;">Новости клана</h1>
+        {% if articles %}
+            {% for article in articles %}
+                {% if article.is_publicate %}
+                    <a href="{% url 'article' article.id %}">
+                        <div class='article'>
+                            <div class='article-name'>
+                                <h1>{{article.name|truncatechars:40}}</h1>
+                                <p style="font-size: 10px;">{{article.date|date:'d.m.Y - H.i'}}</p>
+                            </div>
+                            <div class="article-bg"></div>
+                        </div>
+                    </a>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <div class='article'>
+                <h1>Новостей нет, но скоро они обязательно появятся 😘</h1>
+            </div>   
+        {% endif %}
+    </div>
+{% endblock %}

@@ -93,7 +93,7 @@ def update():
         update_clan_players()
 
         print (f'Update DB - {time.time()-now}s.')
-        time.sleep(3600)
+        time.sleep(14400)
 
 
 Thread(target=update, daemon=True, args=()).start()     

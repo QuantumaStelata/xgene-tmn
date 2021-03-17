@@ -17,8 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
+    path('ckeditor/', include('ckeditor_uploader.urls')),
     path('grappelli/', include('grappelli.urls')),
     path('admin/', admin.site.urls),
     path('', include('apps.main.urls')),
     path('players/', include('apps.players.urls')),
+    path('news/', include('apps.news.urls')),
 ]

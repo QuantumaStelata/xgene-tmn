@@ -167,7 +167,7 @@ hr {
 
 .stronghold:hover{
     box-shadow: 0 0 20px var(--color);
-
+    transform: scale(1.1)
 }
 
 .stronghold h1 {
@@ -205,6 +205,11 @@ hr {
     background-size: contain;
     width: 200px;
     height: 200px;
+    transition: .5s;
+}
+
+.main-logo:hover {
+    transform: scale(1.1)
 }
 
 .globalmap {
@@ -222,7 +227,7 @@ hr {
 
 .globalmap:hover{
     box-shadow: 0 0 20px var(--color);
-
+    transform: scale(1.1);
 }
 
 .globalmap h1 {
@@ -267,7 +272,7 @@ hr {
 
 .container-clan-statistic:hover {
     box-shadow: 0 0 20px var(--color);
-
+    transform: scale(1.05);
 }
 
 .container-clan-statistic div {
@@ -318,6 +323,7 @@ hr {
 
 .best-players div:hover {
     box-shadow: 0 0 20px var(--color);
+    transform: scale(1.1);
 }
 
 .best-players h3{
@@ -379,8 +385,7 @@ hr {
 }
 
 .players-list tr:hover {
-    background-color: var(--pass);
-
+    background-color: var(--pass)
 }
 
 .players-list td:first-child {
@@ -388,7 +393,12 @@ hr {
     text-align: left;
     width: 75px;
     font-size: 18px;
+    transition: .2s;
 }
+
+.players-list tr:hover td:first-child {
+    font-size: 20px;
+} 
 
 .players-list p {
     font-size: 11px;
@@ -423,7 +433,6 @@ hr {
 
 .article:hover {
     box-shadow: 0 0 20px var(--color);
-
 }
 
 .article:hover .article-bg {
@@ -455,10 +464,11 @@ hr {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: start;
-    width: 64vw;
-    padding: 3vh 3vw;
-    height: 15vh;
+    justify-content: center;
+    width: 75vw;
+    padding: 5vh 3vw;
+    min-height: 15vh;
+    height: auto;
     color: #fff;
     transition: .5s;
     border: 1px solid var(--color);
@@ -468,4 +478,84 @@ hr {
 
 .article-text:hover {
     box-shadow: 0 0 20px var(--color);
+}
+
+.comments {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 75vw;
+    padding: 5vh 3vw;
+    min-height: 15vh;
+    height: auto;
+    transition: .5s;
+    border: 1px solid var(--color);
+    border-radius: 40px;
+    margin-top: 40px;
+}
+
+.comments form {
+    display: flex;
+    flex-direction: column;
+}
+
+.comments input{
+    margin: 10px 0;
+    width: 10vw;
+    height: 20px;
+    border: 1px solid var(--color);
+    border-radius: 20px;
+    font-weight: bold;
+    outline:none
+}
+
+.comment-name {
+    width: 30vw!important;
+    padding: 10px 20px;
+}
+
+.comment-text {
+    width: 30vw;
+    height: 10vh;
+    border: 1px solid var(--color);
+    border-radius: 20px;
+    padding: 10px 20px;
+    outline:none
+}
+
+.comments:hover {
+    box-shadow: 0 0 20px var(--color);
+}
+
+.comment {
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+    color: var(--color);
+
+}
+
+.comment div {
+    max-width: 35vw;
+}
+
+.comment h2 {
+    margin-left:  20px;
+}
+
+.comment p {
+    margin-left:  20px;
+}
+
+.user {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    border: 1px solid #282828;
+    border-radius: 80px;
+    width: 100px;
+    height: 100px;
+    background-color: var(--color);
+    background-blend-mode: normal;
 }
