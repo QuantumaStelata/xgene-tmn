@@ -1,0 +1,86 @@
+[
+  {
+    "model": "main.ClanId",
+    "pk": 1,
+    "fields": {
+      "clan_id": "1"
+    }
+  },
+  {
+    "model": "players.ClanRole",
+    "pk": 1,
+    "fields": {
+      "role_ru": "Командующий"
+    }
+  },
+  {
+    "model": "players.ClanRole",
+    "pk": 2,
+    "fields": {
+      "role_ru": "Заместитель командующего"
+    }
+  },
+  {
+      "model": "players.ClanRole",
+      "pk": 3,
+      "fields": {
+        "role_ru": "Офицер штаба"
+      }
+    },
+    {
+      "model": "players.ClanRole",
+      "pk": 4,
+      "fields": {
+        "role_ru": "Командир подразделения"
+      }
+    },
+    {
+      "model": "players.ClanRole",
+      "pk": 5,
+      "fields": {
+        "role_ru": "Офицер разведки"
+      }
+    },
+    {
+      "model": "players.ClanRole",
+      "pk": 6,
+      "fields": {
+        "role_ru": "Офицер снабжения"
+      }
+    },
+    {
+      "model": "players.ClanRole",
+      "pk": 7,
+      "fields": {
+        "role_ru": "Офицер по кадрам"
+      }
+    },
+    {
+      "model": "players.ClanRole",
+      "pk": 8,
+      "fields": {
+        "role_ru": "Младший офицер"
+      }
+    },
+    {
+      "model": "players.ClanRole",
+      "pk": 9,
+      "fields": {
+        "role_ru": "Боец"
+      }
+    },
+    {
+      "model": "players.ClanRole",
+      "pk": 10,
+      "fields": {
+        "role_ru": "Новобранец"
+      }
+    },
+    {
+      "model": "players.ClanRole",
+      "pk": 11,
+      "fields": {
+        "role_ru": "Резервист"
+      }
+    }
+  ]
