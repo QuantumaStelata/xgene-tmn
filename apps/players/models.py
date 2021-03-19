@@ -9,9 +9,21 @@ class ClanRole(models.Model):
     def __str__(self):
         return self.role_ru
 
+class ClanTeam(models.Model):
+    name = models.CharField(verbose_name='Название роты', max_length=20)
+    color = models.CharField(verbose_name='Цвет роты', max_length=7, default='#FFFFFF')
+
+    def __str__(self):
+        return self.name
+
+    class Meta():
+        verbose_name = 'Рота'
+        verbose_name_plural = 'Роты'
+
 class Players(models.Model):
     clan = models.ForeignKey(ClanId, on_delete = models.CASCADE)
     role = models.ForeignKey(ClanRole, on_delete = models.CASCADE)
+    team = models.ForeignKey(ClanTeam, blank=True, null=True, on_delete = models.SET_NULL)
     player_id = models.CharField(verbose_name='ID игрока', max_length=25, primary_key=True)
     name = models.CharField(verbose_name='Имя игрока', max_length=25)
     battles = models.CharField(verbose_name='Всего боев', max_length=25, blank=True)

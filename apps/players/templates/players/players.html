@@ -7,8 +7,12 @@
 
 {% block main %}
 <div class="players-list" id='players-list'>
-    <h1 style="color: #fff; margin-top: 40px;">Личный состав клана</h1>
-    <h3 style="margin: 0;">{{len}}/100</h3>
+    {% if all %}
+        <h1 style="color: #fff; margin-top: 40px;">Личный состав клана</h1>
+        <h3 style="margin: 0;">{{len}}/100</h3>
+    {% else %}
+        <h1 style="color: #fff; margin-top: 40px;">Состав роты {{team}}</h1>
+    {% endif %}
     <hr width="100%" style="margin: 20px 0 40px">
     <table>
         <tr>
@@ -28,6 +32,9 @@
             <th>F/B
                 <span>Среднее количество уничтоженной техники</span>
             </th>
+            <th>Team
+                <span>Рота</span>
+            </th>
         </tr>
         {% for player in list %}
         <tr>
@@ -39,6 +46,15 @@
             <td>{{player.win}}%</td>
             <td>{{player.damage}}</td>
             <td>{{player.frags}}</td>
+            {% if player.team %}  
+                <td style="background: linear-gradient(45deg, {{player.team.color}}, {{clan.color}}); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                    <a href="{{player.team}}">
+                        {{player.team}}
+                    </a>
+                </td>
+            {% else %}
+                <td></td>
+            {% endif %}
         </tr>
         {% endfor %}
     </table>
