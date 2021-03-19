@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 class ClanId(models.Model):
-    clan_id = models.CharField(verbose_name="ID клана", max_length=7)
+    clan_id = models.CharField(verbose_name="ID клана", max_length=6)
 
     def __str__(self):
         return self.clan_id
@@ -13,10 +13,10 @@ class ClanId(models.Model):
         verbose_name_plural = 'ID клана'
 
 class ClanInfo(models.Model):
-    tag = models.CharField(verbose_name='Тэг клана', max_length=6, primary_key=True)
+    tag = models.CharField(verbose_name='Тэг клана', max_length=5, primary_key=True)
     name = models.CharField(verbose_name='Название клана', max_length=25, blank=True)
     motto = models.CharField(verbose_name='Девиз клана', max_length=100, blank=True)
-    color = models.CharField(verbose_name='Цвет клана', max_length=10, blank=True)
+    color = models.CharField(verbose_name='Цвет клана', max_length=7, blank=True)
     emblem = models.CharField(verbose_name='Эмблема клана', max_length=300, blank=True)
     
     def __str__(self):
@@ -27,7 +27,6 @@ class ClanInfo(models.Model):
         verbose_name_plural = 'Информация о клане'
 
 class ClanStatistic(models.Model):
-    clan = models.ForeignKey(ClanId, on_delete = models.CASCADE)
     sh10 = models.CharField(verbose_name='Эло укрепрайона X', max_length=4, blank=True)
     sh8 = models.CharField(verbose_name='Эло укрепрайона VIII', max_length=4, blank=True)
     sh6 = models.CharField(verbose_name='Эло укрепрайона VI', max_length=4, blank=True)

@@ -10,5 +10,5 @@ class ClanIdAdmin(admin.ModelAdmin):
 
 @admin.register(ClanStatistic)
 class ClanStatisticAdmin(admin.ModelAdmin):
-    list_display = ('clan', 'static_update')
+    list_display = ('static_update',)
     fields = (('sh10', 'sh8', 'sh6'), ('gm10', 'gm8', 'gm6'), ('battles_count', 'win_rate'), ('rate', 'position'), ('xp_per_battle', 'damage_per_battle'))

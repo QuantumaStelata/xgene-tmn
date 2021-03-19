@@ -48,8 +48,7 @@ def update_clan_info(*args, **kwargs):
     clan_info = json.loads(requests.get(url).text)
 
     if ClanInfo.objects.exists():
-        clan_name = ClanInfo.objects.get()
-        clan_name.delete()
+        clan_name = ClanInfo.objects.get().delete()
      
     try:
         clan_name = ClanInfo()
