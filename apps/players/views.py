@@ -103,6 +103,7 @@ def update_clan_players():
 
 def update():
     while True:
+        time.sleep(3600)
         print ('Start Update')
         now = time.time()
 
@@ -110,8 +111,7 @@ def update():
         update_clan_players()
 
         print (f'Update DB - {time.time()-now}s.')
-        time.sleep(14400)
 
 
-#Thread(target=update, daemon=True, args=()).start()     
+Thread(target=update, daemon=True, args=()).start()     
 
