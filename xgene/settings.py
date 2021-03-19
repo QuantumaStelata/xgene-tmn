@@ -85,10 +85,10 @@ WSGI_APPLICATION = 'xgene.wsgi.application'
 DATABASES = {
     # 'default': {
     #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    #     'NAME': 'xgene',
-    #     'USER': 'postgres',
-    #     'PASSWORD': 'Vlad230500',
-    #     'HOST': 'localhost',
+    #     'NAME': 'dbj0dlrstlkrbt',
+    #     'USER': 'bzkxxazhbzzbbr',
+    #     'PASSWORD': '',
+    #     'HOST': 'ec2-54-155-226-153.eu-west-1.compute.amazonaws.com',
     #     'PORT': '5432',
     # }
 
