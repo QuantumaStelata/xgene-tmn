@@ -113,5 +113,5 @@ def update():
         time.sleep(14400)
 
 
-Thread(target=update, daemon=True, args=()).start()     
+#Thread(target=update, daemon=True, args=()).start()     
 
