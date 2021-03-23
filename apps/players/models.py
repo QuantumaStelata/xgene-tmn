@@ -22,10 +22,10 @@ class ClanTeam(models.Model):
 
 class Players(models.Model):
     clan = models.ForeignKey(ClanId, on_delete = models.CASCADE)
-    role = models.ForeignKey(ClanRole, on_delete = models.CASCADE)
+    role = models.ForeignKey(ClanRole, blank=True, null=True, on_delete = models.CASCADE)
     team = models.ForeignKey(ClanTeam, blank=True, null=True, on_delete = models.SET_NULL)
     player_id = models.CharField(verbose_name='ID игрока', max_length=25, primary_key=True)
-    name = models.CharField(verbose_name='Имя игрока', max_length=25)
+    name = models.CharField(verbose_name='Имя игрока', max_length=25, blank=True)
     battles = models.CharField(verbose_name='Всего боев', max_length=25, blank=True)
     wgr = models.CharField(verbose_name='WGR', max_length=25, blank=True)
     win = models.CharField(verbose_name='Процент побед', max_length=25, blank=True)

@@ -45,7 +45,8 @@ INSTALLED_APPS = [
 
     'apps.main',
     'apps.players',
-    'apps.news'
+    'apps.news',
+    'apps.wn8'
 ]
 
 MIDDLEWARE = [
@@ -90,7 +91,7 @@ DATABASES = {
     #     'PASSWORD': '',
     #     'HOST': 'ec2-54-155-226-153.eu-west-1.compute.amazonaws.com',
     #     'PORT': '5432',
-    # }
+    }
 
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',

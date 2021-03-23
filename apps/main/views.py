@@ -10,7 +10,7 @@ import requests, json
 class MainView(View):
     @staticmethod
     def online():
-        url = 'https://wgstatus.com/api/data'
+        url = 'https://wgstatus.com/api/data/wot'
         response = json.loads(requests.get(url).text)
         online = {}
         for i in response['results']:

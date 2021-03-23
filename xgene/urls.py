@@ -23,4 +23,5 @@ urlpatterns = [
     path('', include('apps.main.urls')),
     path('players/', include('apps.players.urls')),
     path('news/', include('apps.news.urls')),
+    path('wn8/', include('apps.wn8.urls')),
 ]

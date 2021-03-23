@@ -70,7 +70,7 @@ def update_clan_players():
     Сначала удаляет из БД лишних игроков клана.
     После обновляет игроков с API, либо добавляет их, если такого игрока не существует.
     '''
-    clan_id = ClanId.objects.get()
+    clan_id = ClanId.objects.last()
 
     url = f'https://api.worldoftanks.ru/wot/clans/info/?application_id=f43f7018199159cf600980288310be15&clan_id={clan_id}'
     players_api = json.loads(requests.get(url).text)['data'][f'{clan_id}']['members']
@@ -85,13 +85,15 @@ def update_clan_players():
 
     
     for pl in players_api:
-        player, _ = Players.objects.get_or_create(player_id=pl['account_id'], name = pl['account_name'],
-                                                    clan = ClanId.objects.get(), role = ClanRole.objects.get(role_ru=str(pl['role_i18n'])))
+        print (pl['account_name'])
+        player, _ = Players.objects.get_or_create(player_id=pl['account_id'], clan = ClanId.objects.last())
 
         url = f'https://api.worldoftanks.ru/wot/account/info/?application_id=f43f7018199159cf600980288310be15&account_id={pl["account_id"]}'
         player_stats = json.loads(requests.get(url).text)['data'][f'{pl["account_id"]}']
 
         if str(player.battles) != str(player_stats['statistics']['all']['battles']):
+            player.name = pl['account_name']
+            player.role = ClanRole.objects.get(role_ru=str(pl['role_i18n']))
             player.battles = player_stats['statistics']['all']['battles']
             player.wgr = player_stats['global_rating']
             player.win = round(int(player_stats['statistics']['all']['wins'])*100/int(player.battles if player.battles != 0 else 1), 2)
@@ -103,7 +105,7 @@ def update_clan_players():
 
 def update():
     while True:
-        time.sleep(3600)
+        #time.sleep(300)
         print ('Start Update')
         now = time.time()
 
@@ -111,6 +113,7 @@ def update():
         update_clan_players()
 
         print (f'Update DB - {time.time()-now}s.')
+        time.sleep(3300)
 
 
 Thread(target=update, daemon=True, args=()).start()     

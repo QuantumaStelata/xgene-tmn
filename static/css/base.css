@@ -15,6 +15,7 @@ a {
     color: unset;
     text-decoration: none; 
     cursor: default;
+    outline: none;
 }
 
 
@@ -554,4 +555,103 @@ hr {
     height: 100px;
     background-color: var(--color);
     background-blend-mode: normal;
+}
+
+.wn8-form {
+    width: 80vw;
+    height: auto;
+    min-height: 15vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.wn8-form h1 {
+    margin: 0;
+    color: #fff;
+}
+
+.wn8-form h2 {
+    margin-top: 80px;
+    color: #fff;
+}
+
+.wn8-form a {
+    margin-top: 60px;
+    padding: 20px;
+    border: 1px solid var(--color);
+    font-weight: bold;
+    border-radius: 40px;
+    color: #fff;
+    transition: .5s;
+}
+
+.wn8-form a:hover {
+    box-shadow: 0 0 20px var(--color);
+}
+
+
+.wn8-form input {
+    border: 1px solid;
+    border-radius: 40px;
+    outline: none;
+    margin-top: 10vh;
+}
+
+.wn8-form input:focus {
+    box-shadow: 0 0 20px var(--color);
+}
+
+.wn8-form input:nth-child(2) {
+    font-size: 20px;
+    width: 20vw;
+    height: 5vh;
+    margin-right: 5px;
+    background-color: #282828;
+    padding-left: 15px;
+    padding-right: 15px;
+    color: var(--color)
+}
+
+.wn8-form input:nth-child(3) {
+    font-weight: bold;
+    font-size: 20px;
+    height: 5vh;
+}
+
+.xvm {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 5vh;
+    width: 80vw;
+    height: auto;
+}
+
+.xvm:last-of-type {
+    margin-bottom: 10vh;
+}
+
+.xvm div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--color);
+    border-radius: 60px;
+    width: 13vw;
+    height: 17vh;
+    transition: 0.5s;
+}
+
+.xvm div:hover {
+    box-shadow: 0 0 20px var(--color);
+    transform: scale(1.15);
+}
+
+.xvm div h2 {
+    margin: 1vw 1vh;
 }
