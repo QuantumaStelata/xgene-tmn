@@ -85,7 +85,6 @@ def update_clan_players():
 
     
     for pl in players_api:
-        print (pl['account_name'])
         player, _ = Players.objects.get_or_create(player_id=pl['account_id'], clan = ClanId.objects.last())
 
         url = f'https://api.worldoftanks.ru/wot/account/info/?application_id=f43f7018199159cf600980288310be15&account_id={pl["account_id"]}'
@@ -105,7 +104,7 @@ def update_clan_players():
 
 def update():
     while True:
-        #time.sleep(300)
+        time.sleep(300)
         print ('Start Update')
         now = time.time()
 
