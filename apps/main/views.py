@@ -24,6 +24,9 @@ class MainView(View):
 
 
     def get(self, request, *args, **kwargs):
+        # https://api.worldoftanks.ru/wot/auth/login/?application_id=f43f7018199159cf600980288310be15&redirect_uri=http%3A%2F%2F127.0.0.1:8000
+        # print (request.GET.get("nickname"))
+        # print (requests.get(f'https://api.worldoftanks.ru/wot/account/info/?application_id=f43f7018199159cf600980288310be15&access_token={request.GET.get("access_token")}&account_id={request.GET.get("account_id")}&extra=private.grouped_contacts').text)
         clan = ClanInfo.objects.get()
         static = ClanStatistic.objects.latest('static_update')
 

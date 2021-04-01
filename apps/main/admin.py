@@ -8,6 +8,11 @@ from .models import ClanId, ClanStatistic, ClanInfo
 class ClanIdAdmin(admin.ModelAdmin):
     list_display = ('clan_id',)
 
+@admin.register(ClanInfo)
+class ClanInfoAdmin(admin.ModelAdmin):
+    list_display = ('tag',)
+    fields = ('color',)
+
 @admin.register(ClanStatistic)
 class ClanStatisticAdmin(admin.ModelAdmin):
     list_display = ('static_update',)
