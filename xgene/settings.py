@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '&&&rudk=fs^wmow&9v6xap*&6#i$7^ellq717ez(&u3p0-4zca'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -45,7 +45,8 @@ INSTALLED_APPS = [
 
     'apps.main',
     'apps.players',
-    'apps.news'
+    'apps.news',
+    'apps.wn8'
 ]
 
 MIDDLEWARE = [
@@ -81,16 +82,9 @@ WSGI_APPLICATION = 'xgene.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
+# from .postgreset import DATABASE
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    #     'NAME': 'xgene',
-    #     'USER': 'postgres',
-    #     'PASSWORD': 'Vlad230500',
-    #     'HOST': 'localhost',
-    #     'PORT': '5432',
-    # }
+    # 'default': DATABASE,
 
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',

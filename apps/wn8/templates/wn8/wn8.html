@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block banner %}
+    {% if get %}
+        <div class='banner' style="background-image: url({% static 'img/wn8-banner-get.jpg' %});"></div>
+    {% else %}        
+        <div class='banner' style="background-image: url({% static 'img/wn8-banner-post.jpg' %});"></div>
+    {% endif %}
+{% endblock %}
+
+{% block main %}
+    <div class='wn8-form'>
+        {% if get %}
+            <h1>Калькулятор рейтинга игрока</h1>
+            <form action="#last" method="POST">
+                {% csrf_token %}
+                <input type="text" name='name' style="border-color: {{clan.color}};" placeholder="Nick" required>
+                <input type="submit" value="Поиск", style="background-color: {{clan.color}};">
+            </form>
+        {% elif post %}
+            <h1 style="color: {{clan.color}}; margin-bottom: 7vh">{{player.name}}</h1>
+            <div class='xvm'>
+                <div>
+                    <h2>Бои</h2>
+                    <h1>{{statistic.battles}}</h1>
+                </div>
+                <div>
+                    <h2>Победы</h2>
+                    <h1>{{statistic.win}}</h1>
+                </div>
+                <div>
+                    <h2>Wn8</h2>
+                    <h1>{{statistic.wn8}}</h1>
+                </div>
+                <div>
+                    <h2>WGR</h2>
+                    <h1>{{statistic.wgr}}</h1>
+                </div>
+                <div>
+                    <h2>EFF</h2>
+                    <h1>{{statistic.eff}}</h1>
+                </div>
+            </div>
+            <div class='xvm' id='last'>
+                <div>
+                    <h2>Фраги</h2>
+                    <h1>{{statistic.frags}}</h1>
+                </div>
+                <div>
+                    <h2>Урон</h2>
+                    <h1>{{statistic.damage}}</h1>
+                </div>
+                <div>
+                    <h2>Опыт</h2>
+                    <h1>{{statistic.exp}}</h1>
+                </div>
+                <div>
+                    <h2>Выживаемость</h2>
+                    <h1>{{statistic.survive}}</h1>
+                </div>
+            </div>
+            <div class='xvm'>
+                <div>
+                    <h2>Макс. фрагов</h2>
+                    <h1>{{statistic.max_frags}}</h1>
+                </div>
+                <div>
+                    <h2>Макс. урон</h2>
+                    <h1>{{statistic.max_damage}}</h1>
+                </div>
+                <div>
+                    <h2>Макс. опыт</h2>
+                    <h1>{{statistic.max_exp}}</h1>
+                </div>
+            </div>
+        {% else %}
+            {% if error == 404 %}
+                <h2> Игрок не найден, либо не состоит в клане [{{clan.tag}}] {{clan.name}} </h2>
+            {% else %}
+                <h2> Ошибка на сервере XVM </h2>
+            {% endif %}
+            <a href='{% url  "wn8" %}'>Вернуться</a>
+        {% endif %}
+    </div>
+{% endblock %}

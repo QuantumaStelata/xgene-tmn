@@ -25,6 +25,7 @@
                     <a href="{% url 'main' %}">Главная</a>
                     <a href="{% url 'players' %}">Игроки</a>
                     <a href="{% url 'news' %}">Новости</a>
+                    <a href="{% url 'wn8' %}">Статистика</a>
                     {% if user.is_authenticated %}
                         {% if user.is_staff %}
                             <a href="/admin" class="admin-button"></a>   

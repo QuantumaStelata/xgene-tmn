@@ -20,8 +20,8 @@ class Article(models.Model):
 
 class Comment(models.Model):
     article = models.ForeignKey(Article, verbose_name='Коментарий к статье', on_delete=models.CASCADE)
-    nick = models.CharField(verbose_name='Ник автора', max_length=60)
-    text = models.CharField(verbose_name='Текст комментария', max_length=60)
+    nick = models.CharField(verbose_name='Ник автора', max_length=100)
+    text = models.CharField(verbose_name='Текст комментария', max_length=300)
     date = models.DateTimeField(verbose_name='Дата комментария', auto_now_add=True)
 
     def __str__(self):
