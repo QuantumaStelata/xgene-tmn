@@ -82,16 +82,9 @@ WSGI_APPLICATION = 'xgene.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
+# from .postgreset import DATABASE
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    #     'NAME': 'dbj0dlrstlkrbt',
-    #     'USER': 'bzkxxazhbzzbbr',
-    #     'PASSWORD': '',
-    #     'HOST': 'ec2-54-155-226-153.eu-west-1.compute.amazonaws.com',
-    #     'PORT': '5432',
-    # }
+    # 'default': DATABASE,
 
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
