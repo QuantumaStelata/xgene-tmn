@@ -18,17 +18,31 @@
             </div>
         </div>
         <div class="comments">
-            <form method="POST", action="">
-                {% csrf_token %}
-                <input name="nick" class='comment-name' placeholder="Nick" required maxlength="50">
-                <textarea name="text" class="comment-text" placeholder="Comment..." required maxlength="245"></textarea>
-                <input type="submit" class="submit" value="Поделиться">
-            </form>
+            {% if user.is_authenticated %}
+                <form method="POST", action="">
+                    {% csrf_token %}
+                    <textarea name="text" class="comment-text" placeholder="Comment..." required maxlength="245"></textarea>
+                    <input type="submit" value="Поделиться">
+                </form>
+            {% else %}
+                <h1 style="color: var(--color);">
+                    <u>
+                        <a href="{% url 'wgopenid' %}">Войти, чтобы оставить комментарий</a>
+                    </u>
+                </h1>
+            {% endif %}
+            {% if comments %}
+                <hr width="100%" style="margin: 30px 0 30px">
+            {% endif %}
             {% for comment in comments %}
                 <div class="comment">
-                    <div class='user' style="background-image: url({% static 'img/user.png' %});"></div>
+                    {% if comment.user.profile.image %}
+                        <div class='user' style="background-image: url('{{comment.user.profile.image.url}}'); background-size: cover;"></div>
+                    {% else %}
+                        <div class='user' style="background-image: url({% static 'img/user.png' %});"></div>
+                    {% endif %}
                     <div>
-                        <h2>{{comment.nick}}:</h2>
+                        <h2>{{comment.user.username}}:</h2>
                         <p>{{comment.text}}</p>
                     </div>
                 </div>

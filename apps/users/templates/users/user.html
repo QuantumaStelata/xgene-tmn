@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block banner %}
+    <div class='banner' style="background-image: url({% static 'img/article-banner.jpg' %});"></div>
+{% endblock %}
+
+{% block main %}
+{% if edit %}
+    <div class="container-user" style="margin: 10vh 0;">
+        <form action="" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+            <div>
+                <h1>Аватарка</h1>
+                <input type="file" name="image" class='file' id='image'>
+            </div>
+            {% if user.profile.streamer %}
+            <div>
+                <h1>Ссылка на канал</h1>
+                <input type="text" name="text" id='text' class='url' value="{{user.profile.url}}"> 
+            </div>
+            {% endif %}
+            <div style="flex-direction: column; margin-bottom: 5vh;">
+                <input type="submit" alt='Submit' class="submit" value="Сохранить">
+            </div>
+        </form>
+    </div>
+{% else %}
+    <div class="container-user" style="flex-direction: column; border: 0px;  box-shadow: 0 0 0;">
+        <div class='user photo' style="background-image: url('{% if user_.profile.image %}{{user_.profile.image.url}}{% else %}{% static 'img/user.png' %}{% endif %}');"></div>
+        <h1 style="color: var(--color);">{{user_.username}}</h1>
+        {% if user_.username == user.username %}
+        <a href="{% url 'edit' user %}">
+            <h2>Редактировать</h2>
+        </a>
+        {% endif %}
+        <!-- <div class="user-info"></div> -->
+    </div>
+{% endif %}
+{% endblock %}

@@ -62,6 +62,7 @@ hr {
 
 .bar {
     display: flex;
+    flex-direction: row;
     justify-content: flex-end;
     align-items: center;
     color: #282828;
@@ -288,7 +289,7 @@ hr {
     flex-direction: column;
     align-items: center;
     width: 80vw;
-    height: 67vh;
+    height: auto;
     color: #fff;
 }
 
@@ -504,7 +505,7 @@ hr {
     border: 1px solid var(--color);
     border-radius: 20px;
     font-weight: bold;
-    outline:none
+    outline: none;
 }
 
 .comment-name {
@@ -598,6 +599,7 @@ hr {
     border-radius: 40px;
     outline: none;
     margin-top: 10vh;
+    max-width: 70vw;
 }
 
 .wn8-form input:focus {
@@ -654,4 +656,155 @@ hr {
 
 .xvm div h2 {
     margin: 1vw 1vh;
+}
+
+.container-user {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 80vw;
+    height: auto;
+    justify-content: center;
+    color: #fff;
+    border: 1px solid var(--color);
+    border-radius: 120px;
+    transition: 0.5s;
+}
+
+.container-user:hover {
+    box-shadow: 0 0 20px var(--color);
+}
+
+.container-user h1 {
+    margin: 7vh;
+}
+
+.container-user h2 {
+    color: #282828;
+    background-color: var(--color);
+    width: 13vw;
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 10vh;
+    border: 1px solid var(--color);
+    border-radius: 100px;
+    transition: 0.5s;
+}
+
+.container-user h2:hover {
+    box-shadow: 0 0 20px var(--color);
+    transform: scale(1.1)
+}
+
+.photo {
+    margin-top: 7vh;
+    width: 200px;
+    height: 200px;
+    border-radius: 140px;
+    transition: 0.5s;
+    background-size: cover;
+}
+
+.photo:hover {
+    box-shadow: 0 0 20px var(--color);
+    transform: scale(1.1)
+}
+
+.user-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 80vw;
+    height: auto;
+    border: 1px solid var(--color);
+    border-radius: 100px;
+    transition: .5s;
+}
+
+.user-info h1{
+    color: #fff;
+}
+
+.user-info:hover{
+    box-shadow: 0 0 20px var(--color);
+    transform: scale(1.1);
+}
+
+.container-user form div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.submit {
+    width: 200px;
+    height: 50px;
+    border: 1px solid var(--color);
+    border-radius: 100px;
+    transition: 0.5s;
+    outline: 0;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+
+.submit:hover{
+    box-shadow: 0 0 20px var(--color);
+    transform: scale(1.1);
+    outline: 0;
+}
+
+.url {
+    width: 300px;
+    height: 30px;
+    border: 1px solid var(--color);
+    border-radius: 100px;
+    outline: 0;
+    padding: 0 10px;
+}
+
+.streamers-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 80vw;
+    height: auto;
+    color: #fff;
+}
+
+.streamer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* justify-content: space-around; */
+    width: 23vw;
+    height: 120px;
+    border: 1px solid var(--color); 
+    border-radius: 120px;
+    transition: 0.5s;
+}
+
+.streamer:hover {
+    box-shadow: 0 0 20px var(--color);
+    transform: scale(1.1);
+    outline: 0;
+}
+
+.streamer h2 {
+    margin: 0 15px;
+}
+
+.youtube {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    border: 1px solid #282828;
+    border-radius: 80px;
+    width: 120px;
+    height: 120px;
+    background-color: var(--color);
+    background-blend-mode: normal;
 }

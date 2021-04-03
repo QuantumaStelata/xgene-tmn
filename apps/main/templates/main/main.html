@@ -115,4 +115,20 @@
         </div>
     </div>
 </div>
+<hr width="100%" style="margin: 0 0 20px">
+<div class="streamers-container">
+    <h1>Наши стримеры</h1>
+    <div class="streamers-container" style="flex-direction: row; margin-bottom: 15vh; margin-top: 5vh">
+        {% for streamer in streamers %}
+        {% if streamer.url %}
+            <a href="{{streamer.url}}">
+                <div class="streamer">
+                    <div class='youtube' style="background-image:url({{streamer.image.url}}); background-size: cover;"></div>
+                    <h2>{{streamer.user}}</h2>
+                </div>
+            </a>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}
