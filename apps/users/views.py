@@ -50,7 +50,7 @@ class EditUser(View):
         user = User.objects.get(username=username)
         if 'image' in request.FILES:
             user.profile.image = request.FILES['image']
-        if request.POST['text']:
+        if 'text' in request.POST:
             user.profile.url = request.POST['text']
         user.save()
 
