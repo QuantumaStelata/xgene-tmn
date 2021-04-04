@@ -36,8 +36,8 @@
             {% endif %}
             {% for comment in comments %}
                 <div class="comment">
-                    {% if comment.user.profile.image %}
-                        <div class='user' style="background-image: url('{{comment.user.profile.image.url}}'); background-size: cover;"></div>
+                    {% if comment.user.profile.photo %}
+                        <div class='user' style="background-image: url('{{comment.user.profile.photo}}'); background-size: cover; background-color: #282828"></div>
                     {% else %}
                         <div class='user' style="background-image: url({% static 'img/user.png' %});"></div>
                     {% endif %}

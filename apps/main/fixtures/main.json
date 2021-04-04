@@ -16,6 +16,12 @@
       "clan_id": "1"
     }
   },
+  { "model": "main.ClanStatistic",
+    "pk": 1,
+    "fields": {
+        "rate": "Update..."
+    }
+  },
   {
     "model": "players.ClanRole",
     "pk": 1,

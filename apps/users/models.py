@@ -6,7 +6,9 @@ from django.dispatch import receiver
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(verbose_name='Фото игрока', blank=True)
+    token = models.CharField(verbose_name='Токен', blank=True, max_length=500)
+    # image = models.ImageField(verbose_name='Фото игрока', blank=True)
+    photo = models.CharField(verbose_name='Фото игрока', blank=True, max_length=300)
     streamer = models.BooleanField(verbose_name='Стример', default=False)
     url = models.CharField(verbose_name='Ссылка на канал', blank=True, max_length=300)
 

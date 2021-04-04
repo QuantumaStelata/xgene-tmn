@@ -696,6 +696,15 @@ hr {
     transform: scale(1.1)
 }
 
+.user-buttons {
+    display: flex;
+    flex-direction: row!important;
+    align-items: center;
+    width: 50vw;
+    height: auto;
+    justify-content: space-around;
+}
+
 .photo {
     margin-top: 7vh;
     width: 200px;
@@ -732,7 +741,7 @@ hr {
 }
 
 .container-user form div{
-    display: flex;
+    display: flex;  
     flex-direction: row;
     align-items: center;
     justify-content: center;
@@ -781,7 +790,7 @@ hr {
     align-items: center;
     /* justify-content: space-around; */
     width: 23vw;
-    height: 120px;
+    height: 122px;
     border: 1px solid var(--color); 
     border-radius: 120px;
     transition: 0.5s;
@@ -802,7 +811,7 @@ hr {
     background-position: center;
     background-size: contain;
     border: 1px solid #282828;
-    border-radius: 80px;
+    border-radius: 90px;
     width: 120px;
     height: 120px;
     background-color: var(--color);
