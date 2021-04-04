@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from ckeditor_uploader.fields import RichTextUploadingField
 # Create your models here.
 
@@ -20,12 +21,12 @@ class Article(models.Model):
 
 class Comment(models.Model):
     article = models.ForeignKey(Article, verbose_name='Коментарий к статье', on_delete=models.CASCADE)
-    nick = models.CharField(verbose_name='Ник автора', max_length=100)
+    user = models.ForeignKey(User, verbose_name='Автор', on_delete=models.CASCADE)
     text = models.CharField(verbose_name='Текст комментария', max_length=300)
     date = models.DateTimeField(verbose_name='Дата комментария', auto_now_add=True)
 
     def __str__(self):
-        return self.nick
+        return self.user.username
 
     class Meta:
         verbose_name = 'Комментарий'

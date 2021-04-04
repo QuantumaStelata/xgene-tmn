@@ -8,4 +8,4 @@ class ArticleAdmin(admin.ModelAdmin):
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('article', 'nick', 'text', 'date')
+    list_display = ('article', 'user', 'text', 'date')

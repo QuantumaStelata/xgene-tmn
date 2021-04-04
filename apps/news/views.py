@@ -19,14 +19,13 @@ class Articles(View):
             raise Http404("Статья не найдена") 
 
         clan = ClanInfo.objects.get()
-        comments = Comment.objects.filter(article=article).order_by('-date').all()
+        comments = Comment.objects.filter(article=article).order_by('-date').select_related()
         return render(request, 'news/article.html', {'online': MainView.online(), 'clan': clan,
                                                      'article': article, 'comments': comments})
     
     def post(self, request, article_id, *args, **kwargs):
-        comment = Comment.objects.create(article = Article.objects.get(id = article_id))
-        comment.nick = request.POST['nick']
-        comment.text = request.POST['text']
-        comment.save()
+        comment = Comment.objects.create(article = Article.objects.get(id = article_id),
+                                         user=request.user,
+                                         text=request.POST['text'])
 
         return HttpResponseRedirect(self.request.path_info)

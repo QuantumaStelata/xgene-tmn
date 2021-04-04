@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import View
 from django.db.models import signals
 from django.dispatch import receiver
+from apps.users.models import Profile
 from .models import ClanId, ClanInfo, ClanStatistic
 
 import requests, json
@@ -24,11 +25,9 @@ class MainView(View):
 
 
     def get(self, request, *args, **kwargs):
-        # https://api.worldoftanks.ru/wot/auth/login/?application_id=f43f7018199159cf600980288310be15&redirect_uri=http%3A%2F%2F127.0.0.1:8000
-        # print (request.GET.get("nickname"))
-        # print (requests.get(f'https://api.worldoftanks.ru/wot/account/info/?application_id=f43f7018199159cf600980288310be15&access_token={request.GET.get("access_token")}&account_id={request.GET.get("account_id")}&extra=private.grouped_contacts').text)
         clan = ClanInfo.objects.get()
         static = ClanStatistic.objects.latest('static_update')
+        streamers = Profile.objects.filter(streamer=True)
 
         url = 'https://ru.wargaming.net/clans/wot/{}/api/personnel/'.format(ClanId.objects.last())
         response = json.loads(requests.get(url).text)
@@ -36,7 +35,8 @@ class MainView(View):
         top_wins = response['personnel']['top_wins_ratio']
         top_battles = response['personnel']['top_battles_count_daily']
         return render(request, 'main/main.html', {'online': MainView.online(), 'clan': clan, 'static': static,
-                                             'top_damage': top_damage, 'top_wins': top_wins, 'top_battles': top_battles})
+                                             'top_damage': top_damage, 'top_wins': top_wins, 'top_battles': top_battles,
+                                             'streamers': streamers})
 
 
 @receiver(signals.post_save, sender=ClanId)
