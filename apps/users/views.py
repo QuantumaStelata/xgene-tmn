@@ -7,13 +7,14 @@ from django.contrib.auth.hashers import make_password
 from apps.main.models import ClanInfo
 from apps.players.models import Players
 from apps.main.views import MainView
+from .models import Profile
 import requests, json
 # Create your views here.
 
 class WgOpenIdView(View):
     def get(self, request, *args, **kwargs):
-        # return HttpResponseRedirect('https://api.worldoftanks.ru/wot/auth/login/?application_id=f43f7018199159cf600980288310be15&redirect_uri=http%3A%2F%2F127.0.0.1:8000%2Fuser%2Flogin')
-        return HttpResponseRedirect('https://api.worldoftanks.ru/wot/auth/login/?application_id=f43f7018199159cf600980288310be15&redirect_uri=https%3A%2F%2Fxgenex.herokuapp.com%2Fuser%2Flogin')
+        return HttpResponseRedirect('https://api.worldoftanks.ru/wot/auth/login/?application_id=f43f7018199159cf600980288310be15&redirect_uri=http%3A%2F%2F127.0.0.1:8000%2Fuser%2Flogin')
+        # return HttpResponseRedirect('https://api.worldoftanks.ru/wot/auth/login/?application_id=f43f7018199159cf600980288310be15&redirect_uri=https%3A%2F%2Fxgenex.herokuapp.com%2Fuser%2Flogin')
 
 class LoginView(View):
     def get(self, request, *args, **kwargs):
@@ -22,19 +23,20 @@ class LoginView(View):
         
         try:
             if check_user['status'] == 'ok':
-                Players.objects.get(player_id=request.GET.get('account_id'))
+                player = Players.objects.get(player_id=request.GET.get('account_id'))
         except:
             return HttpResponseRedirect('/')
 
         user, created = User.objects.get_or_create(username=request.GET.get('nickname'))
-
-        if created:
-            user.is_superuser=False
-            user.is_staff=False
-            user.is_active=True
-            user.profile.token = request.GET.get('access_token')
-            user.password = make_password(request.GET.get('nickname'))
-            user.save()
+        profile, _ = Profile.objects.get_or_create(user=user)
+        profile.save()
+        user.is_superuser=False
+        user.is_staff=False
+        user.is_active=True
+        user.profile.player = player
+        user.profile.token = request.GET.get('access_token')
+        user.password = make_password(request.GET.get('nickname'))
+        user.save()
 
 
         user = auth.authenticate(username=request.GET.get('nickname'), password=request.GET.get('nickname'))
