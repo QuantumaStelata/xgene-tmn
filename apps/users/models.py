@@ -7,7 +7,7 @@ from apps.players.models import Players
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    player = models.OneToOneField(Players, blank=True, null=True, on_delete=models.CASCADE)
+    player = models.ForeignKey(Players, blank=True, null=True, on_delete=models.CASCADE)
     token = models.CharField(verbose_name='Токен', blank=True, max_length=500)
     # image = models.ImageField(verbose_name='Фото игрока', blank=True)
     photo = models.CharField(verbose_name='Фото игрока', blank=True, max_length=300)
