@@ -13,7 +13,7 @@ import requests, json
 class WgOpenIdView(View):
     def get(self, request, *args, **kwargs):
         # return HttpResponseRedirect('https://api.worldoftanks.ru/wot/auth/login/?application_id=f43f7018199159cf600980288310be15&redirect_uri=http%3A%2F%2F127.0.0.1:8000%2Fuser%2Flogin')
-        return HttpResponseRedirect('https://api.worldoftanks.ru/wot/auth/login/?application_id=f43f7018199159cf600980288310be15&redirect_uri=https%3A%2F%2Fxgenex-test.herokuapp.com%2Fuser%2Flogin')
+        return HttpResponseRedirect('https://api.worldoftanks.ru/wot/auth/login/?application_id=f43f7018199159cf600980288310be15&redirect_uri=https%3A%2F%2Fxgenex.herokuapp.com%2Fuser%2Flogin')
 
 class LoginView(View):
     def get(self, request, *args, **kwargs):
