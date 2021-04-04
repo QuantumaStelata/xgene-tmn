@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'xgene.wsgi.application'
 
 # Database
 https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-from .postgreset import DATABASE
+# from .postgreset import DATABASE
 DATABASES = {
     # 'default': DATABASE
 
