@@ -28,7 +28,7 @@ class LoginView(View):
             return HttpResponseRedirect('/')
 
         user, created = User.objects.get_or_create(username=request.GET.get('nickname'))
-        profile, _ = Profile.objects.get_or_create(user=user)
+        profile, _ = Profile.objects.get_or_create(user=user, player=player)
         profile.save()
         user.is_superuser=False
         user.is_staff=False
