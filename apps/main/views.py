@@ -11,17 +11,17 @@ import requests, json
 class MainView(View):
     @staticmethod
     def online():
-        url = 'https://wgstatus.com/api/data/wot'
-        response = json.loads(requests.get(url).text)
-        online = {}
-        for i in response['results']:
-            try:
-                for j in i['data']['servers']:
-                    if 'RU' in j['name']:
-                        online[j['name']]=j['online']
-            except:
-                continue
-        return online
+        # url = 'https://wgstatus.com/api/data/wot'
+        # response = json.loads(requests.get(url).text)
+        # online = {}
+        # for i in response['results']:
+        #     try:
+        #         for j in i['data']['servers']:
+        #             if 'RU' in j['name']:
+        #                 online[j['name']]=j['online']
+        #     except:
+        #         continue
+        return 0
 
 
     def get(self, request, *args, **kwargs):
