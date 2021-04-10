@@ -6,58 +6,47 @@
 {% endblock %}
 
 {% block main %}
-<div class="players-list" id='players-list'>
     {% if all %}
-        <h1 style="color: #fff; margin-top: 40px;">Личный состав клана</h1>
-        <h3 style="margin: 0;">{{len}}/100</h3>
+      <h1 style='color: white; margin-top: 5vh'>Состав клана [{{clan.tag}}]</h1>
+      <h3 style='color: white; margin-bottom: 5vh'>{{len}}/100</h3>
     {% else %}
-        <h1 style="color: #fff; margin-top: 40px;">Состав роты {{team}}</h1>
-        <h3 style="margin: 0;">{{len}}</h3>
+      <h1 style='color: white; margin-top: 5vh'>Состав роты {{team}}</h1>
+      <h3 style='color: white; margin-bottom: 5vh'>{{len}}/100</h3>
     {% endif %}
-    <hr width="100%" style="margin: 20px 0 40px">
     <table>
         <tr>
-            <th>Игрок</th>
-            <th>BTL
-                <span>Количество боев</span>
-            </th>
-            <th>WGR
-                <span>Личный рейтинг WG</span>
-            </th>
-            <th>W/B
-                <span>Процент побед</span>
-            </th>
-            <th>D/B
-                <span>Средний урон</span>
-            </th>
-            <th>F/B
-                <span>Среднее количество уничтоженной техники</span>
-            </th>
-            <th>Team
-                <span>Рота</span>
-            </th>
+          <th>Игрок</th>
+          <th>BTL</th>
+          <th>WGR</th>
+          <th>W/B</th>
+          <th>D/B</th>
+          <th>F/B</th>
+          <th>Wn8</th>
+          <th>Team</th>
         </tr>
         {% for player in list %}
-        <tr>
-            <td>{{player.name}}
-                <p>{{player.role}}</p>
-            </td>
-            <td>{{player.battles}}</td>
-            <td>{{player.wgr}}</td>
-            <td>{{player.win}}%</td>
-            <td>{{player.damage}}</td>
-            <td>{{player.frags}}</td>
-            {% if player.team %}  
-                <td style="background: linear-gradient(45deg, {{player.team.color}}, {{clan.color}}); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                    <a href="{{player.team}}">
-                        {{player.team}}
-                    </a>
-                </td>
-            {% else %}
-                <td></td>
-            {% endif %}
+         <tr>
+          <td>
+            {{player.name}}
+            <h6>{{player.role}}</h6>
+          </td>
+          <td>{{player.battles}}</td>
+          <td>{{player.wgr}}</td>
+          <td>{{player.win}}%</td>
+          <td>{{player.damage}}</td>
+          <td>{{player.frags}}</td>
+          <td style="background-image: linear-gradient(-135deg, {{player.color_wn8}}, var(--pass-color), var(--pass-color))">{{player.wn8}}</td>
+          {% if player.team %}
+              <td style="background-image: linear-gradient(-135deg, {{player.team.color}}, var(--pass-color), var(--pass-color))">
+                <a href="{{player.team}}">
+                  {{player.team}}
+                </a>
+              </td>
+
+          {% else %}
+            <td>Без роты</td>
+          {% endif %}
         </tr>
         {% endfor %}
-    </table>
-</div>
+        </table>
 {% endblock %}

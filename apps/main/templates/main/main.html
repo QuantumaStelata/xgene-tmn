@@ -2,139 +2,89 @@
 {% load static %}
 
 {% block banner %}
-    <div class='banner' style="background-image: url({% static 'img/main-banner.jpg' %});"></div>
+    <div class="banner" style="background-image: url({% static 'img/main-banner.jpg' %});"></div>
 {% endblock %}
 
 {% block main %}
-<div class="container-clan">
-    <div class="stronghold">
-        <h1>Укрепрайон</h1>
-        <div class="stronghold-elo">
+    <div class="clan-info">
+        <div class="elo">
+            <h1>Укрепрайон</h1>
             <div>
-                <p>eSH X</p>
-                <p>{{static.sh10}}</p>
-            </div>
-            <div>
-                <p>eSH VIII</p>
-                <p>{{static.sh8}}</p>
-            </div>
-            <div>
-                <p>eSH VI</p>
-                <p>{{static.sh6}}</p>
-            </div>
-        </div>
-    </div>
-    <div class='main-logo' style="background-image: url('{{clan.emblem}}');"></div>
-    <div class="globalmap">
-        <h1>Глобальная карта</h1>
-        <div class="globalmap-elo">
-            <div>
-                <p>eSH X</p>
-                <p>{{static.gm10}}</p>
-            </div>
-            <div>
-                <p>eSH VIII</p>
-                <p>{{static.gm8}}</p>
-            </div>
-            <div>
-                <p>eSH VI</p>
-                <p>{{static.gm6}}</p>
-            </div>
-        </div>
-    </div>
-</div>
-<div style="display: flex; flex-direction: row; align-items: flex-start; justify-content: center; height: 10vh;">
-    <p style="text-align: center; color: var(--color); font-weight: bold; font-size: 30px; padding-top: 20px;">[{{clan.tag}}]</p>
-    <p>  </p>
-    <p style="text-align: center; color: #fff; font-weight: bold; font-size: 30px; padding-top: 20px;">{{clan.name}}</p> 
-</div>
-<hr width="100%" style="margin: 50px 0 20px">
-<div class="container-clan-statistic">
-    <div>
-        <h2 style="margin: 0; color: var(--color);">{{static.battles_count}}</h2>
-        <p>Среднее количество боев</p>      
-    </div>
-    <div>
-        <h2 style="margin: 0; color: var(--color);">{{static.win_rate}}%</h2>
-        <p>Среднее процент побед</p>      
-    </div>
-    <div>
-        <h2 style="margin: 0; color: var(--color); font-size: 35px;">{{static.rate}}</h2>
-        <p>Рейтинг клана</p>
-        <div style="display: flex; flex-direction: row; font-size: 12px; margin-top: 10px;">
-            <img src="{% static 'img/rating-profile-place-icon.png' %}" style="margin-bottom: -4px;"></img>
-            <p>{{static.position}}   </p>
-        </div>    
-    </div>
-    <div>
-        <h2 style="margin: 0; color: var(--color);">{{static.xp_per_battle}}</h2>
-        <p>Средний опыт за бой</p>      
-    </div>
-    <div>
-        <h2 style="margin: 0; color: var(--color);">{{static.damage_per_battle}}</h2>
-        <p>Средний урон за бой</p>      
-    </div>
-</div>
-<hr width="100%" style="margin: 20px 0 40px">
-<div class="container-best-players">
-    <h1>Лучшие игроки клана</h1>
-    <p style="color: rgba(255, 255, 255, 0.2); font-style: italic;">последние 30 дней</p>
-    <div class="best-players">
-        <div>
-            <h3>Процент побед</h3>
-            <table>
-                {% for player in top_wins %}
-                    <tr>
-                        <td style="color: var(--color); font-weight: bold;">{{player.account_name}}</td>
-                        <td>{{player.wins_ratio}}%</td>
-                    </tr>
-                {% endfor %}
-            </table>
-        </div>
-        <div>
-            <h3>Среднее количество боёв в день</h3>
-            <table>
-                {% for player in top_battles %}
-                    <tr>
-                        <td style="color: var(--color); font-weight: bold;">{{player.account_name}}</td>
-                        <td>{{player.battles_count_daily}}</td>
-                    </tr>
-                {% endfor %}
-            </table>
-        </div>
-        <div>
-            <h3>Средний урон за бой</h3>
-            <table>
-                {% for player in top_damage %}
-                    <tr>
-                        <td style="color: var(--color); font-weight: bold;">{{player.account_name}}</td>
-                        <td>{{player.damage_avg}}</td>
-                    </tr>
-                {% endfor %}
-            </table>
-        </div>
-    </div>
-</div>
-<hr width="100%" style="margin: 0 0 20px">
-{% if streamers %}
-<div class="streamers-container">
-    <h1>Наши стримеры</h1>
-    <div class="streamers-container" style="flex-direction: row; margin-bottom: 15vh; margin-top: 5vh">
-        {% for streamer in streamers %}
-        {% if streamer.url %}
-            <a href="{{streamer.url}}">
-                <div class="streamer">
-                    {% if streamer.photo %}
-                        <div class='youtube' style="background-image: url('{{streamer.photo}}'); background-color: #282828;"></div>
-                    {% else %}
-                        <div class='youtube' style="background-image: url('{% static 'img/user.png' %}')"></div>
-                    {% endif %}
-                    <h2>{{streamer.user}}</h2>
+                <div>
+                    <h3>X</h3>
+                    <h2>{{static.sh10}}</h2>
                 </div>
-            </a>
-        {% endif %}
-        {% endfor %}
+                <div>
+                    <h3>VIII</h3>
+                    <h2>{{static.sh8}}</h2>
+                </div>
+                <div>
+                    <h3>VI</h3>
+                    <h2>{{static.sh6}}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="logo" style="background-image: url('{{clan.emblem}}');"></div>
+        <div class="elo">
+            <h1>Глобальная карта</h1>
+            <div >
+                <div>
+                    <h3>X</h3>
+                    <h2>{{static.gm10}}</h2>
+                </div>
+                <div>
+                    <h3>VIII</h3>
+                    <h2>{{static.gm8}}</h2>
+                </div>
+                <div>
+                    <h3>VI</h3>
+                    <h2>{{static.gm6}}</h2>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-{% endif %}
+    <h1 style='color: white'><span style="color: var(--main-color)">[{{clan.tag}}]</span> {{clan.name}}</h1>
+    <hr>
+    <div class="clan-statistic">
+        <div>
+            <h1>{{static.battles_count}}</h1>
+            <h4>Среднее количество боев</h4>
+        </div>
+        <div>
+            <h1>{{static.win_rate}}%</h1>
+            <h4>Средний процент побед</h4>
+        </div>
+        <div>
+            <h1>{{static.rate}}</h1>
+            <h4>Рейтинг клана</h4>
+            <div>
+                <img src="{% static 'img/rating-profile-place-icon.png' %}" style="margin-bottom: -4px;">
+                <h5>{{static.position}}</h5>
+            </div>
+        </div>
+        <div>
+            <h1>{{static.xp_per_battle}}</h1>
+            <h4>Средний опыт за бой</h4>
+        </div>
+        <div>
+            <h1>{{static.damage_per_battle}}</h1>
+            <h4>Средний урон за бой</h4>
+        </div>
+    </div>
+    {% if streamers %}
+        <hr>
+        <h1 style='color: white; margin-bottom: 30px'>Клановые стримеры</h1>
+        <div class="clan-streamers">
+            {% for streamer in streamers %}
+                {% if streamer.url %}
+                    <a href='{{streamer.url}}' class="streamer">
+                        <h1>{{streamer.user}}</h1>
+                        <div class="streamer-subscribe">
+                            <h3>Подписаться</h3>
+                        </div>
+                    </a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}            
 {% endblock %}

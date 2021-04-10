@@ -28,15 +28,7 @@ class MainView(View):
         clan = ClanInfo.objects.get()
         static = ClanStatistic.objects.latest('static_update')
         streamers = Profile.objects.filter(streamer=True)
-
-        url = 'https://ru.wargaming.net/clans/wot/{}/api/personnel/'.format(ClanId.objects.last())
-        response = json.loads(requests.get(url).text)
-        top_damage = response['personnel']['top_damage_avg']
-        top_wins = response['personnel']['top_wins_ratio']
-        top_battles = response['personnel']['top_battles_count_daily']
-        return render(request, 'main/main.html', {'online': MainView.online(), 'clan': clan, 'static': static,
-                                             'top_damage': top_damage, 'top_wins': top_wins, 'top_battles': top_battles,
-                                             'streamers': streamers})
+        return render(request, 'main/main.html', {'clan': clan, 'static': static, 'streamers': streamers})
 
 
 @receiver(signals.post_save, sender=ClanId)

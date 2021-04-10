@@ -1,11 +1,11 @@
 from django.shortcuts import render, Http404
 from django.views.generic import View
 from apps.main.models import ClanInfo, ClanStatistic, ClanId
-from apps.main.views import MainView
 from .models import Players, ClanRole
 from django.db import transaction
 from threading import Thread
 import time, json, requests
+from bs4 import BeautifulSoup
 # Create your views here.
 
 class PlayersView(View):
@@ -13,7 +13,7 @@ class PlayersView(View):
         all_players = True
         clan = ClanInfo.objects.get()
         players_list = Players.objects.all()
-        return render(request, "players/players.html", {'online': MainView.online(), 'all': all_players, 'clan': clan, 
+        return render(request, "players/players.html", {'all': all_players, 'clan': clan, 
                                                         'list': players_list, 'len': len(players_list)})
 
 class TeamView(View):
@@ -22,8 +22,8 @@ class TeamView(View):
         players_list = Players.objects.filter(team__name=team)
 
         if players_list:
-            return render(request, "players/players.html", {'online': MainView.online(), 'clan': clan, 'team': team, 
-                                                        'list': players_list, 'len': len(players_list)})
+            return render(request, "players/players.html", {'clan': clan, 'team': team, 
+                                                            'list': players_list, 'len': len(players_list)})
         else:
             raise Http404('Такая рота не найдена')
 
@@ -91,13 +91,27 @@ def update_clan_players():
         player_stats = json.loads(requests.get(url).text)['data'][f'{pl["account_id"]}']
 
         if str(player.battles) != str(player_stats['statistics']['all']['battles']):
+            xvm = requests.get(f'https://stats.modxvm.com/ru/stats/players/{player.player_id}').text
+            soup = BeautifulSoup(xvm, "html.parser")
+
             player.name = pl['account_name']
             player.role = ClanRole.objects.get(role_ru=str(pl['role_i18n']))
             player.battles = player_stats['statistics']['all']['battles']
             player.wgr = player_stats['global_rating']
             player.win = round(int(player_stats['statistics']['all']['wins'])*100/int(player.battles if player.battles != 0 else 1), 2)
+            player.wn8 = soup.find_all("div", {"class": "h2"})[2].text.replace(' ', '')
             player.damage = round(int(player_stats['statistics']['all']['damage_dealt'])/int(player.battles if player.battles != 0 else 1))
             player.frags = round(int(player_stats['statistics']['all']['frags'])/int(player.battles if player.battles != 0 else 1),2)
+
+            try:
+                if int(player.wn8) >= 3370: player.color_wn8 = '#c64cff'
+                elif int(player.wn8) >= 2463: player.color_wn8 = '#25c2dd' 
+                elif int(player.wn8) >= 1615: player.color_wn8 = '#4A9C02'
+                elif int(player.wn8) >= 1020: player.color_wn8 = '#c6bf1f'
+                elif int(player.wn8) >= 506: player.color_wn8 = '#c6991f'
+                else: player.color_wn8 = '#c61f1f'
+            except:
+                pass
 
             player.save()
 

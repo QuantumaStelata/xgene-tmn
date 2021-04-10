@@ -29,6 +29,8 @@ class Players(models.Model):
     battles = models.CharField(verbose_name='Всего боев', max_length=25, blank=True)
     wgr = models.CharField(verbose_name='WGR', max_length=25, blank=True)
     win = models.CharField(verbose_name='Процент побед', max_length=25, blank=True)
+    wn8 = models.CharField(verbose_name='Wn8', max_length=25, blank=True)
+    color_wn8 = models.CharField(verbose_name='Цвет Wn8', max_length=7, blank=True)
     damage = models.CharField(verbose_name='Средний дамаг', max_length=25, blank=True)
     frags = models.CharField(verbose_name='Среднее кол-во фрагов', max_length=25, blank=True)
     

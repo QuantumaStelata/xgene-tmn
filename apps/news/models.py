@@ -5,6 +5,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 
 class Article(models.Model):
     name = models.CharField(verbose_name='Название статьи', max_length=250)
+    banner = models.CharField(verbose_name='Баннер', blank=True, max_length=250)
     text = RichTextUploadingField(verbose_name='Текст статьи')
     date = models.DateTimeField(verbose_name='Дата публикации')
     is_publicate = models.BooleanField(verbose_name='Опубликовать?', default=False)

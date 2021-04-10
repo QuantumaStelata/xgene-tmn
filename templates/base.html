@@ -2,86 +2,59 @@
 {% load static %}
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="{{clan.emblem}}" type="image/png">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap" rel="stylesheet">
-    <title>{{clan.tag}}</title>
-    <style>
+	<link rel="stylesheet" href="{% static 'css/base.css' %}">
+	<link rel="stylesheet" href="{% static 'css/main.css' %}">
+	<link rel="stylesheet" href="{% static 'css/players.css' %}">
+	<link rel="stylesheet" href="{% static 'css/news.css' %}">
+	<link rel="stylesheet" href="{% static 'css/article.css' %}">
+	<script src="{% static 'js/main.js' %}"></script>
+	<title>XGENE</title>
+	<style>
         :root {
-            --color: {{clan.color}};
-            --pass: {{clan.color}}2a;
-        } 
-        @font-face {
-            font-family: 'BosaNova'; 
-            src: url({% static 'fonts/BosaNova.ttf' %});
-           }
+            --main-color: {{clan.color}};
+			--pass-color: {{clan.color}}2a;
+			--back-color: #282828;
+			--max-w: 90vw;
+        }
+
+		@font-face {
+			font-family: 'Bosa';
+			src: url("{% static 'fonts/BosaNova.ttf' %}");
+		}
     </style>
 </head>
 <body>
-    <div class='main'>
-        <div class='header'>
-            <div class='header-main'>
-                <!--  -->
-                <h1 style="font-family: 'Bungee Shade', cursive; font-size: 3.2em; width: 30vw;">{{clan.tag}}</h1>
-                <div class='bar'>
-                    <a href="{% url 'main' %}">Главная</a>
-                    <a href="{% url 'players' %}">Игроки</a>
-                    <a href="{% url 'news' %}">Новости</a>
-                    <a href="{% url 'wn8' %}">Статистика</a>
-                    {% if user.is_authenticated %}
-                        <a href="{% url 'user' user.username %}">{{user.username}}</a>
-                    {% else %}
-                        <a href="{% url 'wgopenid' %}">Войти</a>
-                    {% endif %}
-                    {% if user.is_authenticated %}
-                        {% if user.is_staff %}
-                            <a href="/admin" class="admin-button"></a>   
-                        {% endif %}
-                    {% endif %}    
-                </div>
-            </div>
-        </div>
-        {% block banner %}{% endblock %}
-        <div class="container">
-            {% block main %}{% endblock %}
-        </div>
-        <div class='footer'>
-            <table>
-                <tr>
-                    <td>RU1</td>
-                    <td>RU2</td>
-                    <td>RU3</td>
-                    <td>RU4</td>
-                    <td>RU5</td>
-                    <td>RU6</td>
-                    <td>RU7</td>
-                    <td>RU8</td>
-                    <td>RU9</td>
-                    <td>RU10</td>
-                    <td>RU11</td>
-                    <td>RU12</td>
-                    <td>RU13</td>
-                </tr>
-                <tr>
-                    <td>{{online.RU1}}</td>
-                    <td>{{online.RU2}}</td>
-                    <td>{{online.RU3}}</td>
-                    <td>{{online.RU4}}</td>
-                    <td>{{online.RU5}}</td>
-                    <td>{{online.RU6}}</td>
-                    <td>{{online.RU7}}</td>
-                    <td>{{online.RU8}}</td>
-                    <td>{{online.RU9}}</td>
-                    <td>{{online.RU10}}</td>
-                    <td>{{online.RU11}}</td>
-                    <td>{{online.RU12}}</td>
-                    <td>{{online.RU13}}</td>
-                </tr>
-            </table>
-        </div>
-    </div>  
+	<div id="ftco-loader" class="show fullscreen">
+		<div class="circular" width="48px" height="48px">
+			<img src="{{clan.emblem}}" width="70px">
+		</div>
+	</div>
+	<header>
+		<a href="{% url 'main' %}"><h1 style="font-family: 'Bosa', arial; color: var(--back-color)">{{clan.tag}}</h1></a>
+		<div>
+			<a href="{% url 'main' %}">Главная</a>
+			<a href="{% url 'players' %}">Игроки</a>
+			<a href="{% url 'news' %}">Новости</a>
+			{% if user.is_authenticated %}
+				<a href="{% url 'user' user.username %}">{{user.username}}</a>
+			{% else %}
+				<a href="{% url 'wgopenid' %}">Войти</a>
+			{% endif %}
+			{% if user.is_authenticated %}
+				{% if user.is_staff %}
+					<a href="/admin" class="admin-button"></a>   
+				{% endif %}
+			{% endif %}    
+		</div>
+	</header>
+    {% block banner %}{% endblock %}
+    {% block main %}{% endblock %}
+	<footer>
+		<h6>Created by <a href="https://github.com/QuantumaStelata" target="_blank" style="color: #282828;">QuantumaStelata</a></h6>
+	</footer>
 </body>
-</html> 
+</html>

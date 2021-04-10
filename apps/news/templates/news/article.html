@@ -2,51 +2,56 @@
 {% load static %}
 
 {% block banner %}
-    <div class='banner' style="background-image: url({% static 'img/article-banner.jpg' %});"></div>
+    {% if article.banner %}
+        <div class='banner' style="background-image: url({{article.banner}});"></div>
+    {% else %}
+        <div class='banner' style="background-image: url({% static 'img/new-banner.jpg' %});"></div>
+    {% endif %}
+	
 {% endblock %}
 
 {% block main %}
-    <div class="news">
-        <div class="article-text" style="word-wrap: break-word;">
-            <h1 style="color: #fff; margin: 20px 30px; text-align: center;">
-                {{article.name}}
-               
-            </h1>
-            <hr width="100%" style="margin: 30px 0 30px">
-            <div>
-                {% autoescape off %}{{article.text}}{% endautoescape %}
-            </div>
+    <h1 class="article-name">{{article.name}}</h1>
+    <h4 style="color: gray;">{{article.date|date:'d.m.Y'}}</h4>
+    <hr>
+    <div class="article-text">
+        <div>
+            {% autoescape off %}{{article.text}}{% endautoescape %}
         </div>
-        <div class="comments">
-            {% if user.is_authenticated %}
-                <form method="POST", action="">
-                    {% csrf_token %}
-                    <textarea name="text" class="comment-text" placeholder="Comment..." required maxlength="245"></textarea>
-                    <input type="submit" value="Поделиться">
-                </form>
+    </div>
+    <hr>
+    <div class="article-input-comment">
+        {% if user.is_authenticated %}
+            {% if user.profile.photo %}
+                <div class="photo-comment" style="background-image: url('{{user.profile.photo}}'); background-color: var(--back-color)"></div>
             {% else %}
-                <h1 style="color: var(--color);">
-                    <u>
-                        <a href="{% url 'wgopenid' %}">Войти, чтобы оставить комментарий</a>
-                    </u>
-                </h1>
+                <div class="photo-comment" style="background-image: url({% static 'img/user.png' %});"></div>
             {% endif %}
-            {% if comments %}
-                <hr width="100%" style="margin: 30px 0 30px">
-            {% endif %}
-            {% for comment in comments %}
-                <div class="comment">
-                    {% if comment.user.profile.photo %}
-                        <div class='user' style="background-image: url('{{comment.user.profile.photo}}'); background-size: cover; background-color: #282828"></div>
-                    {% else %}
-                        <div class='user' style="background-image: url({% static 'img/user.png' %});"></div>
-                    {% endif %}
-                    <div>
-                        <h2>{{comment.user.username}}:</h2>
-                        <p>{{comment.text}}</p>
-                    </div>
+            <form method="POST", action="">
+                {% csrf_token %}
+                <textarea id="text" name="text" rows="4" cols="50" placeholder="Комментарий..." maxlength="245" required></textarea>
+                <input type="submit" value="Поделиться">
+            </form>
+        {% else %}
+            <a href="{% url 'wgopenid' %}">
+                <h1 style="color: var(--main-color);">Войти, чтобы оставить комментарий</h1>
+            </a>
+        {% endif %}
+    </div>
+    <hr>
+    <div class="article-output-comments">
+        {% for comment in comments %}
+            <div class="text-comment">
+                {% if comment.user.profile.photo %}
+                    <div class="photo-comment" style="background-image: url('{{comment.user.profile.photo}}'); background-color: var(--back-color)"></div>
+                {% else %}
+                    <div class="photo-comment" style="background-image: url({% static 'img/user.png' %});"></div>
+                {% endif %}
+                <div>
+                    <h2>{{comment.user.username}}</h2>
+                    <h4>{{comment.text}}</h4>
                 </div>
-            {% endfor %}
-        </div>
+            </div>
+        {% endfor %}
     </div>
 {% endblock %}

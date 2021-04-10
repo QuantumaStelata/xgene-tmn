@@ -2,30 +2,30 @@
 {% load static %}
 
 {% block banner %}
-    <div class='banner' style="background-image: url({% static 'img/news-banner.jpg' %});"></div>
+	<div class='banner' style="background-image: url({% static 'img/news-banner.jpg' %});"></div>
 {% endblock %}
 
 {% block main %}
-    <div class="news">
-        <h1 style="color: #fff; margin-top: 40px;">Новости клана</h1>
-        {% if articles %}
+    <h1 style="color: white; margin: 5vh;">Новости клана</h1>
+    <div class="clan-news">
+		{% if articles %}
             {% for article in articles %}
                 {% if article.is_publicate %}
-                    <a href="{% url 'article' article.id %}">
-                        <div class='article'>
-                            <div class='article-name'>
-                                <h1>{{article.name|truncatechars:40}}</h1>
-                                <p style="font-size: 10px;">{{article.date|date:'d.m.Y - H.i'}}</p>
-                            </div>
-                            <div class="article-bg"></div>
-                        </div>
-                    </a>
-                {% endif %}
-            {% endfor %}
-        {% else %}
-            <div class='article'>
-                <h1>Новостей нет, но скоро они обязательно появятся 😘</h1>
-            </div>   
-        {% endif %}
+					<a href="{% url 'article' article.id %}" class="new">
+						{% if article.banner %}
+							<div style="background-image: url('{{article.banner}}')"></div>
+						{% else %}
+						<div style="background-image: url('{% static 'img/new-banner.jpg' %}')"></div>
+						{% endif %}
+						<hr style="width: 99%; margin: 0; background-color: var(--back-color); color: var(--back-color); border-color: var(--back-color);" color="var(--back-color)">
+						<div class="new-info">
+							<h2>{{article.name|truncatechars:65}}</h2>
+							
+						</div>
+						<h6>{{article.date|date:'d.m.Y'}}</h6>
+					</a>
+				{% endif %}
+			{% endfor %}
+		{% endif %}
     </div>
 {% endblock %}

@@ -1,0 +1,227 @@
+/* 360 576 768 992 1200 1600 */
+
+/* ClanInfo */
+.clan-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;    
+    height: 40vh;
+    color: white;
+}
+
+.clan-info .elo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 30%;
+    height: 70%;
+    border: 1px solid var(--main-color);
+    border-radius: 1000px;
+    transition: 0.5s;
+}
+
+.clan-info .elo:hover {
+    box-shadow: 0 0 20px var(--main-color);
+    transform: scale(1.1);
+}
+
+.clan-info .elo div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 40%;
+}
+
+.clan-info .elo div div {
+    flex-direction: column;
+}
+
+.clan-info .logo {
+    width: 22.5%;
+    height: 70%;
+    background-repeat: no-repeat;
+    background-position: center center; 
+    background-size: contain;
+    transition: 1s;
+}
+
+.clan-info .logo:hover {
+    transform: scale(1.2);
+}
+
+/* ClanStatistic */
+.clan-statistic {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--main-color);
+    border-radius: 1000px;
+    transition: 0.5s;
+}
+
+.clan-statistic:hover {
+    box-shadow: 0 0 20px var(--main-color);
+    transform: scale(1.05);
+}
+
+.clan-statistic div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 18%;
+    height: 80%;
+    color: white;
+    text-align: center;
+    margin: 1vh 0;
+}
+
+.clan-statistic div:nth-child(3) div{
+    width: auto;
+    height: auto;
+    flex-direction: row;
+    align-items: center;
+}
+
+/* ClanStreamers */
+.clan-streamers {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+}
+
+.clan-streamers .streamer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 40%;
+    height: 15vh;
+    margin: 3vh 0;
+    border: 1px solid var(--main-color);
+    border-radius: 1000px;
+    transition: 0.5s;
+}
+
+.clan-streamers .streamer:hover {
+    box-shadow: 0 0 20px var(--main-color);
+    transform: scale(1.05);
+}
+
+.clan-streamers .streamer:hover .streamer-subscribe {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+.clan-streamers .streamer h1 {
+    margin-left: 2vw;
+    color: white;
+}
+
+.clan-streamers .streamer-subscribe {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35%;
+    height: 100%;
+    background-color: var(--main-color);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center left;
+    border-radius: 1000px;
+    clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+    transition: 0.5s;
+    color: var(--back-color);
+}
+
+/* @media (min-width: 360px) {
+    .clan-info .elo h1 {
+        font-size: 0.5em;
+    }
+    .clan-info .elo div div h3{
+        font-size: 0.1em;
+    }
+    .clan-info .elo div div h2{
+        font-size: 0.1em;
+    }
+
+    .clan-info .elo {
+        height: 40%;
+    }
+
+    .clan-name {
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 576px) {
+    .clan-info .elo h1 {
+        font-size: 0.5em;
+    }
+    .clan-info .elo div div h3{
+        font-size: 0.1em;
+    }
+    .clan-info .elo div div h2{
+        font-size: 0.1em;
+    }
+}
+
+@media (min-width: 768px) {
+    .clan-info .elo h1 {
+        font-size: 1em;
+    }
+    .clan-info .elo div div h3{
+        font-size: 0.17em;
+    }
+    .clan-info .elo div div h2{
+        font-size: 0.5em;
+    }
+}
+
+@media (min-width: 992px) {
+    .clan-info .elo h1 {
+        font-size: 1.5em;
+    }
+    .clan-info .elo div div h3{
+        font-size: 0.67em;
+    }
+    .clan-info .elo div div h2{
+        font-size: 1em;
+    }
+}
+
+@media (min-width: 1200px) {
+    .clan-info .elo h1 {
+        font-size: 2em;
+    }
+    .clan-info .elo div div h3{
+        font-size: 1.17em;
+    }
+    .clan-info .elo div div h2{
+        font-size: 1.5em;
+    }
+}
+
+@media (min-width: 1600px) {
+    .clan-info .elo h1 {
+        font-size: 2.5em;
+    }
+    .clan-info .elo div div h3{
+        font-size: 1.77em;
+    }
+    .clan-info .elo div div h2{
+        font-size: 2em;
+    }
+} */
+

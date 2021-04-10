@@ -22,7 +22,7 @@ class LoginView(View):
         
         try:
             if check_user['status'] == 'ok':
-                Players.objects.get(player_id=request.GET.get('account_id'))
+                player = Players.objects.get(player_id=request.GET.get('account_id'))
         except:
             return HttpResponseRedirect('/')
 
@@ -32,9 +32,11 @@ class LoginView(View):
             user.is_superuser=False
             user.is_staff=False
             user.is_active=True
-            user.profile.token = request.GET.get('access_token')
-            user.password = make_password(request.GET.get('nickname'))
-            user.save()
+
+        user.profile.play = player
+        user.profile.token = request.GET.get('access_token')
+        user.password = make_password(request.GET.get('nickname'))
+        user.save()
 
 
         user = auth.authenticate(username=request.GET.get('nickname'), password=request.GET.get('nickname'))
