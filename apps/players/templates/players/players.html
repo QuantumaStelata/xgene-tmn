@@ -13,7 +13,8 @@
       <h1 style='color: white; margin-top: 5vh'>Состав роты {{team}}</h1>
       <h3 style='color: white; margin-bottom: 5vh'>{{len}}</h3>
     {% endif %}
-    <table>
+    <table class="players">
+      <thead>
         <tr>
           <th>Игрок</th>
           <th>BTL</th>
@@ -24,6 +25,7 @@
           <th>Wn8</th>
           <th>Team</th>
         </tr>
+      </thead>
         {% for player in list %}
          <tr>
           <td>
@@ -42,7 +44,6 @@
                   {{player.team}}
                 </a>
               </td>
-
           {% else %}
             <td>Без роты</td>
           {% endif %}
