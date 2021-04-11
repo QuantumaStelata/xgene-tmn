@@ -7,42 +7,34 @@
 
 {% block main %}
 {% if edit %}
-    <div class="container-user" style="margin: 10vh 0;">
-        <form action="" method="POST" enctype="multipart/form-data"> {% csrf_token %}
-            <div>
-                <h1>Ссылка на аватар</h1>
-                <input type="text" name="photo" id='photo' class='url' value="{{user_.profile.photo}}"> 
-            </div>
-            {% if user_.profile.streamer %}
-            <div>
-                <h1> Ссылка на канал </h1>
-                <input type="text" name="text" id='text' class='url' value="{{user_.profile.url}}"> 
-            </div>
-            {% endif %}
-            <div style="flex-direction: column; margin-bottom: 5vh;">
-                <input type="submit" alt='Submit' class="submit" value="Сохранить">
-            </div>
-        </form>
-    </div>
-{% else %}
-    <div class="container-user" style="flex-direction: column; border: 0px;  box-shadow: 0 0 0;">
-        {% if user_.profile.photo %}
-            <div class='user photo' style="background-image: url('{{user_.profile.photo}}'); background-color: #282828;"></div>
-        {% else %}
-            <div class='user photo' style="background-image: url('{% static 'img/user.png' %}')"></div>
+    <h1 style="color: white; margin-top: 5vh">Редактирование профиля</h1>
+    <hr>
+    <form method="POST" class="user-profile-edit">
+        {% csrf_token %}
+        <h2 style="color: white; margin-bottom: 3vh">Ссылка на аватар</h2>
+        <input type="text" name="photo" class="profile-edit-input" value="{{user_.profile.photo}}">
+        {% if user_.profile.streamer %}
+            <h2 style="color: white; margin: 3vh 0">Ссылка на канал</h2>
+            <input type="text" name="text" class="profile-edit-input" value="{{user_.profile.url}}">
         {% endif %}
-        <h1 style="color: var(--color);">{{user_.username}}</h1>
+        <input type="submit" value="Сохранить">
+    </form>
+{% else %}
+    {% if user_.profile.photo %}
+        <div class="photo-comment" style="margin-top: 5vh; margin-bottom: 2vh; background-image: url('{{user_.profile.photo}}'); background-color: #282828;" id="profile"></div>
+    {% else %}
+        <div class="photo-comment" style="margin-top: 5vh; margin-bottom: 2vh; background-image: url('{% static 'img/user.png' %}')" id="profile"></div>
+    {% endif %}
+    <h1 style="color: white;">{{user_.username}}</h1>
+    <div class="user-profile">
         {% if user_.username == user.username %}
-        <div class='user-buttons'>
             <a href="{% url 'edit' user %}">
-                <h2>Редактировать</h2>
+                <h3>Редактировать</h3>
             </a>
             <a href="{% url 'logout' user %}">
-                <h2>Выйти</h2>
+                <h3>Выйти</h3>
             </a>
-        </div>
         {% endif %}
-        <!-- <div class="user-info"></div> -->
     </div>
 {% endif %}
 {% endblock %}

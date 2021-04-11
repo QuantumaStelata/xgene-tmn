@@ -33,6 +33,7 @@
     background-blend-mode: normal;
     background-size: cover;
     border-radius: 150px;
+    transition: 0.5s;
 }
 
 .article-input-comment form{

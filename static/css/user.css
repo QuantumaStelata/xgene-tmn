@@ -1,0 +1,75 @@
+.user-profile {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    min-height: 13.5vh;
+    margin: 3vh 0;
+    transition: 0.5s;
+}
+
+#profile:hover {
+    transform: scale(1.2);
+}
+
+.user-profile a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 15%;
+    height: 10vh;
+    margin: 0 3vw;
+    border: 1px solid var(--main-color);
+    border-radius: 40px;
+    color: white;
+    text-align: center;
+    transition: 0.5s;
+}
+
+.user-profile a:hover {
+    box-shadow: 0 0 20px var(--main-color);
+    transform: scale(1.1);
+}
+
+.user-profile-edit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    min-height: 28vh;
+}
+
+.user-profile-edit .profile-edit-input{
+    width: 30%;
+    height: 5vh;
+    font-size: 1.3rem;
+    padding: 0 20px;
+    color: white;
+    background-color: var(--back-color);
+    border: 1px solid var(--main-color);
+    border-radius: 40px;
+    outline: 0;
+    overflow: hidden;
+}
+
+.user-profile-edit input:last-child {
+    margin-top: 5vh;
+    color: white;
+    background-color: var(--back-color);
+    border: 1px solid var(--main-color);
+    border-radius: 40px;
+    width: 15%;
+    height: 5vh;
+    outline: none;
+    font-size: 1.3rem;
+    transition: 0.5s;
+    
+}
+
+.user-profile-edit input:last-child:hover {
+    box-shadow: 0 0 20px var(--main-color);
+    transform: scale(1.1);
+}

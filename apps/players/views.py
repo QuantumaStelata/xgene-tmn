@@ -106,7 +106,7 @@ def update_clan_players():
             try:
                 if int(player.wn8) >= 3370: player.color_wn8 = '#c64cff'
                 elif int(player.wn8) >= 2463: player.color_wn8 = '#25c2dd' 
-                elif int(player.wn8) >= 1615: player.color_wn8 = '#4A9C02'
+                elif int(player.wn8) >= 1615: player.color_wn8 = '#5fcc00'
                 elif int(player.wn8) >= 1020: player.color_wn8 = '#c6bf1f'
                 elif int(player.wn8) >= 506: player.color_wn8 = '#c6991f'
                 else: player.color_wn8 = '#c61f1f'
