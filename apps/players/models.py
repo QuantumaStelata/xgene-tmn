@@ -1,5 +1,7 @@
 from django.db import models
 from apps.main.models import ClanId
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 
 # Create your models here.
 
@@ -41,3 +43,8 @@ class Players(models.Model):
         verbose_name = 'Игрок клана'
         verbose_name_plural = 'Игроки клана'
         ordering = ('role_id',)
+
+
+@receiver(pre_save, sender=ClanTeam)
+def save_user_profile(sender, instance, **kwargs):
+    instance.name = instance.name.replace(' ', '-')

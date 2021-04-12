@@ -123,7 +123,7 @@ def update_clan_players():
 
 def update():
     while True:
-        # time.sleep(300)
+        time.sleep(300)
         print ('Start Update')
         now = time.time()
 
