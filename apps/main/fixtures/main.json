@@ -19,7 +19,8 @@
   { "model": "main.ClanStatistic",
     "pk": 1,
     "fields": {
-        "rate": "Update..."
+        "rate": "Update...",
+        "static_update": "2021-01-01 12:00"
     }
   },
   {

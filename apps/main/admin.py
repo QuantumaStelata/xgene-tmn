@@ -11,7 +11,7 @@ class ClanIdAdmin(admin.ModelAdmin):
 @admin.register(ClanInfo)
 class ClanInfoAdmin(admin.ModelAdmin):
     list_display = ('tag',)
-    fields = ('color',)
+    fields = ('color', 'emblem')
 
 @admin.register(ClanStatistic)
 class ClanStatisticAdmin(admin.ModelAdmin):

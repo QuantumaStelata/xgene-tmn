@@ -44,7 +44,11 @@ def update_clan_static():
     url = f'https://ru.wargaming.net/clans/wot/{clan_id}/api/globalmap/'
     globalmap = json.loads(requests.get(url).text)['globalmap'] 
 
-    clan_static = ClanStatistic()
+    clan_static = ClanStatistic.objects.last()
+
+    if clan_static == None:
+        clan_static = ClanStatistic()
+
     clan_info = ClanInfo.objects.get()
    
     clan_static.sh10 = stronghold['esh_10']
@@ -99,11 +103,11 @@ def update_clan_players():
             player.battles = player_stats['statistics']['all']['battles']
             player.wgr = player_stats['global_rating']
             player.win = round(int(player_stats['statistics']['all']['wins'])*100/int(player.battles if player.battles != 0 else 1), 2)
-            player.wn8 = soup.find_all("div", {"class": "h2"})[2].text.replace(' ', '')
             player.damage = round(int(player_stats['statistics']['all']['damage_dealt'])/int(player.battles if player.battles != 0 else 1))
             player.frags = round(int(player_stats['statistics']['all']['frags'])/int(player.battles if player.battles != 0 else 1),2)
 
             try:
+                player.wn8 = soup.find_all("div", {"class": "h2"})[2].text.replace(' ', '')
                 if int(player.wn8) >= 3370: player.color_wn8 = '#c64cff'
                 elif int(player.wn8) >= 2463: player.color_wn8 = '#25c2dd' 
                 elif int(player.wn8) >= 1615: player.color_wn8 = '#5fcc00'
@@ -111,14 +115,15 @@ def update_clan_players():
                 elif int(player.wn8) >= 506: player.color_wn8 = '#edb213'
                 else: player.color_wn8 = '#c61f1f'
             except:
-                pass
+                player.wn8 = 0
+                player.color_wn8 = '#FFFFFF'
 
             player.save()
 
 
 def update():
     while True:
-        time.sleep(300)
+        # time.sleep(300)
         print ('Start Update')
         now = time.time()
 

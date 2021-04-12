@@ -23,6 +23,8 @@ class LoginView(View):
         try:
             if check_user['status'] == 'ok':
                 player = Players.objects.get(player_id=request.GET.get('account_id'))
+            else:
+                return HttpResponseRedirect('/')
         except:
             return HttpResponseRedirect('/')
 

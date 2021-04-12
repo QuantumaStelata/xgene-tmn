@@ -45,6 +45,6 @@ class ClanStatistic(models.Model):
         return self.position
 
     class Meta:
-        verbose_name = 'Статистика клане'
-        verbose_name_plural = 'Статистика клане'
+        verbose_name = 'Статистика клана'
+        verbose_name_plural = 'Статистика клана'
 
