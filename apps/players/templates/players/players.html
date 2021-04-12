@@ -29,7 +29,9 @@
         {% for player in list %}
          <tr>
           <td>
-            {{player.name}}
+            <a href="{% url 'user' player.name %}">
+              {{player.name}}
+            </a>
             <h6>{{player.role}}</h6>
           </td>
           <td>{{player.battles}}</td>
