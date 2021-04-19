@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block banner %}
+    <div class='banner' style="background-image: url({% static 'img/interview-banner.jpg' %});"></div>
+{% endblock %}
+{% block main %}
+    {% if questions %}
+        <h1 style="color: white; margin: 5vh 0">Опросы</h1>
+        {% for question in questions %}
+            <div class="question">
+                <h1 style="color: white;">{{question.title}}</h1>
+                <h5 style="color: white;">Максимальное количество ответов - {{question.max_choice}}</h5>
+                <form method="POST">
+                    {% csrf_token %}
+                    {% if question.max_choice > 1 %}
+                        {% for answer in question.answers.all %}
+                            <div style="margin-top: 2vh; margin-left: 2vw; display: flex; align-items: center">
+                                <input type="checkbox" id="{{answer.id}}" name="answer" value="{{answer.id}}">
+                                <label for="{{answer.id}}" style="color: white; margin-left: 1vw">{{answer.title}}</label>
+                            </div>
+                        {% endfor %}
+                        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+                        <script type="text/javascript">
+                            $('input[type=checkbox]').on('change', function (e) {
+                                if ($('input[type=checkbox]:checked').length > {{question.max_choice}}) {
+                                    $(this).prop('checked', false);
+                                    alert("Максимальное количество ответов - {{question.max_choice}}");
+                                }
+                            });
+                        </script>
+                        <input type="submit" value="Отправить" class="submit">
+                    {% else %}
+                        {% for answer in question.answers.all %}
+                            <div style="margin-top: 2vh; margin-left: 2vw">
+                                <input type="radio" id="{{answer.id}}" name="answer" value="{{answer.id}}">
+                                <label for="{{answer.id}}" style="color: white; margin-left: 1vw">{{answer.title}}</label>
+                            </div>
+                        {% endfor %}
+                        <input type="submit" value="Отправить" class="submit">
+                    {% endif %}
+                </form>
+                    {% if question.public %}
+                        <hr style="margin: 0;">
+                        <div class="interview-bar">
+                            {% for answer in question.answers.all %}
+                                <h2 style="color: white; margin: 1vh 0;">{{answer.title}}</h2>
+                                <div class="bar">
+                                    {% for key, value in all_answers_count.items %}
+                                        {% if key == question.id %}
+                                            {% widthratio answer.users.count value 100 as ratio %}
+                                            {% widthratio 0 value 100 as ratio_none %}
+                                            <div style="width: {{ratio}}%;">{% if ratio != ratio_none %}{{ratio}}%{% endif %}</div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}  
+            </div>
+        {% endfor %}
+    {% else %}
+        <h1 style="color: white; margin: 5vh 0; height: 34vh">Для вас, {{user.profile.play.name}}, нет открытых опросов</h1>
+    {% endif %}
+{% endblock %}

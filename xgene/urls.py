@@ -26,6 +26,7 @@ urlpatterns = [
     path('players/', include('apps.players.urls')),
     path('news/', include('apps.news.urls')),
     # path('wn8/', include('apps.wn8.urls')),
-    path('user/', include('apps.users.urls'))
+    path('user/', include('apps.users.urls')),
+    path('interview/', include('apps.interview.urls'))
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

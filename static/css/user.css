@@ -33,6 +33,15 @@
     transform: scale(1.1);
 }
 
+.user-profile a h4 {
+    text-align: center;
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+    background-color: var(--main-color);
+    color: var(--back-color);
+}
+
 .user-profile-edit {
     display: flex;
     flex-direction: column;

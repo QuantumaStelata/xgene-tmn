@@ -7,6 +7,7 @@ from django.contrib.auth.hashers import make_password
 from apps.main.models import ClanInfo
 from apps.players.models import Players
 from apps.main.views import MainView
+from apps.interview.models import Question
 import requests, json
 # Create your views here.
 
@@ -48,12 +49,13 @@ class LoginView(View):
 class UserView(View):
     def get(self, request, username, *args, **kwargs):
         clan = ClanInfo.objects.get()
+        question = Question.objects.filter(users=request.user.profile.play)
         try:
             user = User.objects.get(username=username)
         except:
             raise Http404
 
-        return render(request, 'users/user.html', {'online': MainView.online(), 'clan': clan, 'user_': user})
+        return render(request, 'users/user.html', {'online': MainView.online(), 'clan': clan, 'user_': user, 'question': question})
 
 class EditUser(View):
     def get(self, request, username, *args, **kwargs):

@@ -28,6 +28,12 @@
     <h1 style="color: white;">{{user_.username}}</h1>
     <div class="user-profile">
         {% if user_.username == user.username %}
+            <a href="{% url 'interview' %}">
+                <h3>Мои опросы </h3>
+                {% if question.count > 0 %}
+                    <h4>{{question.count}}</h4>
+                {% endif %}
+            </a>
             <a href="{% url 'edit' user %}">
                 <h3>Редактировать</h3>
             </a>

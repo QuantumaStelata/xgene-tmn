@@ -118,6 +118,10 @@ def update_clan_players():
                 player.wn8 = 0
                 player.color_wn8 = '#FFFFFF'
 
+            # url = f'https://kttc.ru/wot/ru/user/ggu/get-by-battles/{player.player_id}/'
+            # last_wn8 = json.loads(requests.get(url).text)['data']['1000']['WN8']
+            # print (player.name, last_wn8)
+
             player.save()
 
 
